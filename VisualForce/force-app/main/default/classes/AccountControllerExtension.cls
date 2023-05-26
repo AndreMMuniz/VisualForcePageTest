@@ -11,4 +11,12 @@ public with sharing class AccountControllerExtension {
 
         return null;
     }
+
+    public Pagereference deleteContact(){
+        String index = ApexPages.currentPage().getParameters().get('index');
+
+        this.listContact.remove(Integer.valueOf(index));
+
+        return null;
+    }
 }

@@ -1,6 +1,9 @@
 <apex:page id="AccountPage" sidebar="false" showHeader="true" docType="html-5.0" standardController="Account" extensions="AccountControllerExtension">
     <apex:form id="accountForm">
         <apex:actionFunction name="addContact" action="{!addContact}" reRender="contactInformation" immediate="true" />
+        <apex:actionFunction name="deleteContact" action="{!deleteContact}" reRender="contactInformation" immediate="true">
+            <apex:param name="index" value=""/>
+        </apex:actionFunction>
         <apex:pageBlock mode="edit">
             <apex:pageBlockButtons location="top">
                 <apex:commandButton value="Save" action="{!save}"/>
@@ -16,8 +19,16 @@
                         Add Contact
                     </button>
                 </apex:pageBlockSectionItem>
+                <apex:variable var="index" value="{!0}"></apex:variable>
                 <apex:pageBlockSectionItem>
                     <apex:pageBlockTable value="{!listContact}" var="contact">
+                        <apex:column>
+                            <apex:facet name="header">
+                                
+                            </apex:facet>
+                            <a href="_" onclick="deleteContact({!index});return false;">Delete</a>
+                            <apex:variable var="index" value="{!index + 1}"/>
+                        </apex:column>
                         <apex:column>
                             <apex:facet name="header">
                                 First Name
