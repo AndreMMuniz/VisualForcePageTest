@@ -1,4 +1,4 @@
-<apex:page id="AccountPage" sidebar="false" showHeader="true" docType="html-5.0" standardController="Account">
+<apex:page id="AccountPage" sidebar="false" showHeader="true" docType="html-5.0" standardController="Account" extensions="AccountControllerExtension">
     <apex:form id="accountForm">
         <apex:pageBlock mode="edit">
             <apex:pageBlockButtons location="top">
