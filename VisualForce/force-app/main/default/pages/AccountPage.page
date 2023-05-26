@@ -1,5 +1,6 @@
 <apex:page id="AccountPage" sidebar="false" showHeader="true" docType="html-5.0" standardController="Account" extensions="AccountControllerExtension">
     <apex:form id="accountForm">
+        <apex:actionFunction name="addContact" action="{!addContact}" reRender="contactInformation" immediate="true" />
         <apex:pageBlock mode="edit">
             <apex:pageBlockButtons location="top">
                 <apex:commandButton value="Save" action="{!save}"/>
@@ -8,6 +9,35 @@
                 <apex:inputField value="{!Account.name}"/>
                 <apex:inputField value="{!Account.Site}"/>
                 <apex:inputField value="{!Account.Phone}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Contact Information" columns="1" id="contactInformation">
+                <apex:pageBlockSectionItem>
+                    <button type="button" onclick="addContact();">
+                        Add Contact
+                    </button>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:pageBlockTable value="{!listContact}" var="contact">
+                        <apex:column>
+                            <apex:facet name="header">
+                                First Name
+                            </apex:facet>
+                            <apex:inputField value="{!contact.FirstName}" />
+                        </apex:column>
+                        <apex:column>
+                            <apex:facet name="header">
+                                Last Name
+                            </apex:facet>
+                            <apex:inputField value="{!contact.LastName}" />
+                        </apex:column>
+                        <apex:column>
+                            <apex:facet name="header">
+                                Email
+                            </apex:facet>
+                            <apex:inputField value="{!contact.Email}" />
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>
