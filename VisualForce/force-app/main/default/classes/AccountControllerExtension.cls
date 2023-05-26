@@ -1,9 +1,11 @@
 public with sharing class AccountControllerExtension {
 
     public List<Contact> listContact {get; set;}
+    public Account account {get; set;}
 
     public AccountControllerExtension(ApexPages.StandardController standardController) {
         this.listContact = new List<Contact>();
+        this.account = new Account();
     }
 
     public PageReference addContact(){
@@ -18,5 +20,19 @@ public with sharing class AccountControllerExtension {
         this.listContact.remove(Integer.valueOf(index));
 
         return null;
+    }
+
+    public Pagereference saveAccount(){
+        upsert account;
+
+        for (Contact contact : this.listContact) {
+            contact.AccountId = account.Id;
+        }
+
+        insert this.listContact;
+
+        ApexPages.StandardController controller = new ApexPages.StandardController(account);
+
+        return controller.view();
     }
 }

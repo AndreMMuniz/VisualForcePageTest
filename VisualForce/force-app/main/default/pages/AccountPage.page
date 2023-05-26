@@ -6,12 +6,12 @@
         </apex:actionFunction>
         <apex:pageBlock mode="edit">
             <apex:pageBlockButtons location="top">
-                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Save" action="{!saveAccount}"/>
             </apex:pageBlockButtons>
             <apex:pageBlockSection title="Account Information" columns="2">
-                <apex:inputField value="{!Account.name}"/>
-                <apex:inputField value="{!Account.Site}"/>
-                <apex:inputField value="{!Account.Phone}"/>
+                <apex:inputField value="{!account.name}"/>
+                <apex:inputField value="{!account.Site}"/>
+                <apex:inputField value="{!account.Phone}"/>
             </apex:pageBlockSection>
             <apex:pageBlockSection title="Contact Information" columns="1" id="contactInformation">
                 <apex:pageBlockSectionItem>
