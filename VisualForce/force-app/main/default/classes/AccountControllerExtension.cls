@@ -5,7 +5,11 @@ public with sharing class AccountControllerExtension {
 
     public AccountControllerExtension(ApexPages.StandardController standardController) {
         this.listContact = new List<Contact>();
-        this.account = new Account();
+        this.account = standardController.getRecord() == null ? new Account(): (Account) standardController.getRecord();
+
+        if (this.account.Id != null) {
+            this.listContact = [SELECT Id, FirstName, LastName, Email FROM Contact WHERE AccountId =: this.account.Id];
+        }
     }
 
     public PageReference addContact(){
@@ -29,7 +33,7 @@ public with sharing class AccountControllerExtension {
             contact.AccountId = account.Id;
         }
 
-        insert this.listContact;
+        upsert this.listContact;
 
         ApexPages.StandardController controller = new ApexPages.StandardController(account);
 
