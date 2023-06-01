@@ -1,0 +1,8 @@
+<apex:page id="ViewAccountDetail" sidebar="false" showHeader="true" docType="html-5.0" standardController="Account" extensions="ViewAccountDetailController">
+    <apex:form>
+        <apex:pageBlock mode="maindatail">
+            <apex:detail title="true" subject="{!Account.Id}"/>
+            <c:ContactList isDetail="true" isEditMode="{!isEditMode}" list="{!contacts}" newContactAction="{!newContact}" deleteContactAction="{!deleteContact}" editContactAction="{!editContact}" saveContactAction="{!saveContact}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

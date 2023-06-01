@@ -1,11 +1,13 @@
 public with sharing class AccountControllerExtension {
 
     public List<Contact> listContact {get; set;}
+    List<Contact> listContactToDelete;
     public Account account {get; set;}
 
     public AccountControllerExtension(ApexPages.StandardController standardController) {
-        this.listContact = new List<Contact>();
         this.account = standardController.getRecord() == null ? new Account(): (Account) standardController.getRecord();
+        this.listContact = new List<Contact>();
+        this.listContactToDelete = new List<Contact>();
 
         if (this.account.Id != null) {
             this.listContact = [SELECT Id, FirstName, LastName, Email FROM Contact WHERE AccountId =: this.account.Id];
@@ -21,7 +23,11 @@ public with sharing class AccountControllerExtension {
     public Pagereference deleteContact(){
         String index = ApexPages.currentPage().getParameters().get('index');
 
-        this.listContact.remove(Integer.valueOf(index));
+        Contact con = this.listContact.remove(Integer.valueOf(index));
+
+        if (con.Id != null) {
+            listContactToDelete.add(con);
+        }
 
         return null;
     }
@@ -34,6 +40,10 @@ public with sharing class AccountControllerExtension {
         }
 
         upsert this.listContact;
+
+        if(listContactToDelete.isEmpty()){
+            delete this.listContactToDelete;
+        }
 
         ApexPages.StandardController controller = new ApexPages.StandardController(account);
 

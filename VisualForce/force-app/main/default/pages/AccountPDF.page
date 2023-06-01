@@ -1,0 +1,46 @@
+<apex:page id="AccountPDF" renderAs="pdf" sidebar="false" showHeader="false" docType="html-5.0" applyBodyTag="false" applyHtmlTag="false" controller="AccountPDFController">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PDF</title>
+        <style>
+            ul{
+                list-style: none;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <h1>Account Information</h1>
+            Name: {!currentAccount.Name}
+            Phone: {!currentAccount.Phone}
+            Website: {!currentAccount.Website}
+        </section>
+        <section>
+            <h1>Contact Information</h1>
+            <ul>
+                <apex:repeat value="{!contactsInformation}" var="conInfo">
+                    <li>
+                        {!conInfo}
+                    </li>
+                </apex:repeat>
+            </ul>
+        </section>
+        <section>
+            <h1>Terms and Conditions</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin sagittis magna ut rutrum. Nulla sapien ipsum, sodales at dolor ac, hendrerit cursus arcu. Etiam eu massa id tortor blandit iaculis. Proin finibus neque vulputate eleifend porttitor. Donec ultricies lacus nisl, ut interdum ante condimentum eget. Sed consequat mattis diam. Nam pretium turpis lectus, quis condimentum neque condimentum fermentum.
+
+Integer fermentum massa vel efficitur sollicitudin. Donec a diam vehicula, consectetur quam ut, viverra tellus. Integer blandit ex at magna ultricies egestas. Quisque iaculis ut quam eget tempus. Sed eget ipsum ac orci suscipit ultrices. Proin laoreet mauris id risus hendrerit, vel elementum libero egestas. Sed accumsan lacus in felis bibendum dictum.
+
+Maecenas vitae mi odio. Nunc dignissim id felis id consectetur. Duis elit augue, accumsan eu sagittis quis, blandit at neque. Praesent faucibus ex ac ipsum ornare, nec vehicula risus malesuada. Etiam sagittis aliquam tortor gravida lobortis. In dignissim tellus feugiat eros luctus, eget commodo massa volutpat. In gravida justo est, non pulvinar arcu tincidunt a. Duis lacus ipsum, dictum a tincidunt et, cursus sed velit.
+
+Duis pretium, eros eget dignissim pharetra, risus velit egestas nisi, vitae consectetur eros nunc non metus. Nunc nec odio molestie, pharetra mauris eget, sollicitudin elit. Donec vel mi eget odio condimentum ornare ut eget eros. Curabitur quis dui rutrum, maximus nunc eget, auctor urna. In nec felis augue. Fusce maximus at nibh in molestie. Nunc at justo id nulla suscipit ultrices et eget ex. Nulla sodales fermentum aliquam. Morbi id nulla nec quam convallis convallis at eget mauris. Duis sit amet mollis augue. Duis sit amet lorem justo. Nunc ligula nibh, condimentum nec porta sit amet, ullamcorper nec tortor. Sed vehicula tempor metus, vitae venenatis quam pretium sed. Nunc nisl mi, ultricies id posuere id, condimentum at urna. Sed vitae euismod massa.
+
+Mauris dignissim nulla dolor, sit amet fermentum lectus imperdiet eu. Proin ex leo, feugiat in porttitor ut, ullamcorper a nibh. Sed metus diam, efficitur sit amet sollicitudin at, cursus eget turpis. Sed cursus leo ut fermentum tristique. Nulla mollis libero aliquet, condimentum nibh et, dignissim est. Vivamus consequat enim vitae nunc tempus, nec tincidunt risus feugiat. Proin varius eget urna eu condimentum. Nunc viverra, tortor sed ultrices vehicula, est velit luctus est, in ultricies magna tortor quis urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Donec efficitur felis ex, quis bibendum dolor porttitor vel.
+            </p>
+        </section>
+    </body>
+</html>
+</apex:page>
